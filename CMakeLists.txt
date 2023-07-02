@@ -3,14 +3,13 @@
 cmake_minimum_required(VERSION 3.25)
 project(${PROJECT_NAME})
 
-set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD 23)
 
 file(GLOB_RECURSE source_files
         "src/*.cpp"
         )
-set(SOURCES ${source_files})
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${source_files})
 target_include_directories(${PROJECT_NAME} PRIVATE "src")
 
 # Copy res dir to the binary directory
