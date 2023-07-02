@@ -1,4 +1,7 @@
-﻿#include <Windows.h>
+﻿#ifdef _WIN32
+#include <Windows.h>
+#endif
+
 #include "../ScreenInfo.h"
 #include "SetupSDL.h"
 
@@ -11,10 +14,12 @@ void InitSDL() {
         printf("Failed to start SDL: %s", SDL_GetError());
         exit(-1);
     }
-    
-    SetProcessDPIAware();
 
-    window = SDL_CreateWindow("My SDL Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
+#ifdef _WIN32
+    SetProcessDPIAware();
+#endif
+
+    window = SDL_CreateWindow("Flappy bird 8bit", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
     if (window == nullptr) {
         printf("Failed to create window: %s", SDL_GetError());
         exit(-1);
