@@ -89,11 +89,4 @@ struct Vector2Int
     Vector2Int operator + (const Vector2Int& other) const {
         return Vector2Int(x + other.x, y + other.y);
     }
-
-    // SDL_Point to Vector2Int
-    Vector2Int& operator = (const SDL_Point& other) {
-        x = other.x;
-        y = other.y;
-        return *this;
-    }
 };

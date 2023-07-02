@@ -11,7 +11,7 @@ struct Player {
     const int width = 32;
     const int height = 24;
     
-    const float fallSpeed = 0.01;
+    const float fallSpeed = 0.03;
     
     void update();
     

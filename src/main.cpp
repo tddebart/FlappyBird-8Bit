@@ -1,9 +1,15 @@
 ﻿#include <iostream>
+#include <vector>
 #include "SDL/SetupSDL.h"
 #include "Player.h"
 #include "ScreenInfo.h"
+#include "Pipe.h"
 
 Player player = Player();
+
+std::vector<Pipe> pipes;
+
+unsigned long nextPipeTime = 0;
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
@@ -22,6 +28,21 @@ int main() {
         player.update();
         player.draw(renderer);
         
+        // Add pipe every 2 seconds
+        if (SDL_GetTicks() > nextPipeTime) {
+            Pipe pipe = Pipe();
+            pipes.push_back(pipe);
+            
+            nextPipeTime = SDL_GetTicks() + rand() % 2500 + 1500;
+            
+            Pipe::pipeSpeed += 0.001;
+        }
+        
+        // Update and draw pipes
+        for (auto & pipe : pipes) {
+            pipe.update(player);
+            pipe.draw(renderer);
+        }
 
         SDL_RenderPresent(renderer);
     }

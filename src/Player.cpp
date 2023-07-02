@@ -14,13 +14,12 @@ void Player::update() {
     
     // Collision
     if (position.y + height > SCREEN_HEIGHT/SCREEN_SCALE) {
-        position.y = SCREEN_HEIGHT/SCREEN_SCALE - height;
-        velocity.y = 0;
+        // Game over close
+        exit(0);
     }
     
     if (position.y < 0) {
-        position.y = 0;
-        velocity.y = 0;
+        exit(0);
     }
     
     if (isKeyPressed(SDL_SCANCODE_SPACE)) {
